@@ -1,0 +1,7 @@
+.bg{
+    position: relative;
+}
+.bg-text{
+    position: absolute;
+    top: 240%;
+}
