@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Button, Container, ListGroup } from "react-bootstrap";
 import {
   FaGoogle,
@@ -10,12 +10,29 @@ import {
 import './RightNav.css'
 import QZone from "../QZone/QZone";
 import bg from '../../assets/bg.png'
+import { AuthContext } from "../../Providers/AuthProviders";
 const RightNav = () => {
+  const {googleSign,signOut} = useContext(AuthContext)
+  const [user, setUser] = useState('')
+  const [error , setError] = useState('')
+  const userLogin = () => {
+    googleSign()
+    .then( result => {
+      const user = result.user;
+      console.log(user)
+      setUser(user)
+      setError('')
+    })
+    .catch(error => {
+      setError(error.message);
+      setUser('')
+    })
+  }
   return (
     <Container className="mt-50">
       <div>
         <h4 className="mt-4">Login With</h4>
-        <Button variant="outline-primary w-100 mb-1">
+        <Button onClick={userLogin} variant="outline-primary w-100 mb-1">
           <FaGoogle /> Login With Google
         </Button>
         <Button variant="outline-secondary w-100">
