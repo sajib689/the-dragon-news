@@ -7,10 +7,10 @@ import { Button } from "react-bootstrap";
 import manicon from "../../assets/manicon.png";
 import { AuthContext } from "../../Providers/AuthProviders";
 const Navigation = () => {
-  const { user, signOut } = useContext(AuthContext);
-  console.log(user);
+  const { user, logOut } = useContext(AuthContext);
+
   const userSignOut = () => {
-    signOut();
+    logOut();
   };
   return (
     <>
