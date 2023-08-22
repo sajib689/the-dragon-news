@@ -6,10 +6,13 @@ const auth = getAuth(app)
 const AuthProviders = ({children}) => {
     const googleProvider = new GoogleAuthProvider()
     const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
 const googleSign = () => {
+    setLoading(true)
     return signInWithPopup(auth,googleProvider)
 }
 const formSign = (email, password) => {
+    setLoading(true)
     return createUserWithEmailAndPassword(auth, email, password)
     .then( result => {
         const user = result.user
@@ -20,15 +23,18 @@ const formSign = (email, password) => {
     })
 }
 const formLogin = (email,password) => {
+    setLoading(true)
     return signInWithEmailAndPassword(auth, email, password)
 }
 const logOut = () => {
+    setLoading(true)
     return signOut(auth)
 }
 useEffect(() => {
   const unSubscribe = onAuthStateChanged(auth, currentUser => {
    
     setUser(currentUser)
+    setLoading(false)
     })
   return  () => {
     unSubscribe()
@@ -40,7 +46,8 @@ useEffect(() => {
         formLogin,
         googleSign,
         formSign,
-        logOut
+        logOut,
+        loading
     }
     return (
         <AuthContext.Provider value={authInfo}>
