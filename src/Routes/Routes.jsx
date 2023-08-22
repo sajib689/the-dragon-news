@@ -16,17 +16,17 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Category></Category>,
-                loader: () => fetch('https://the-dragon-news-server-pearl.vercel.app/news')
+                loader: () => fetch('http://localhost:3000/news')
             },
             {
                 path: '/category/:id',
                 element: <Category></Category>,
-                loader: ({params}) => fetch(`https://the-dragon-news-server-pearl.vercel.app/categories/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:3000/categories/${params.id}`)
             },
             {
                 path: '/news/:id',
                 element: <PrivateRoute><News></News></PrivateRoute>,
-                loader: ({params}) => fetch(`https://the-dragon-news-server-pearl.vercel.app/news/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:3000/news/${params.id}`)
             },
             {
                 path: '/login',
