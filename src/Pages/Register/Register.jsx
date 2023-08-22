@@ -23,7 +23,7 @@ const Register = () => {
       <Form onSubmit={handleSubmit}>
         <input type="text" name="name" placeholder="Enter Your Name" />
         <br />
-        <input type="text" name="email" placeholder="Enter Your Name" />
+        <input type="text" name="email" placeholder="Enter Your Name" required/>
         <br />
         <input type="text" name="password" placeholder="Enter Your Name" />
         <br />
@@ -33,7 +33,7 @@ const Register = () => {
           name="accept"
           label={
             <>
-              Accept <Link to="/terms">Terms & Condition</Link>
+              Accept <Link to='/terms'>Terms & Condition</Link>
             </>
           }
         />
